@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>دليلك لسلوكيات أمن سيبرانية آمنة | Your Guide to Safe Cyber Behaviors</title>
+<style>
+    :root{ --bg:#dbeafe; --text:#0b1220; --muted:#334155; --border:#c7d2fe; --card:#ffffff; --accent:#1e40af }
+    *{box-sizing:border-box}
+    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background:linear-gradient(160deg,#dbeafe,#c7d2fe,#e2e8f0); color:var(--text) color:var(--text)}
+    header{position:sticky; top:0; background:#ffffffcc; backdrop-filter: blur(6px); border-bottom:1px solid var(--border); z-index:10}
+    .container{max-width:1000px; margin:0 auto; padding:18px}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:64px;height:64px;border-radius:12px;display:grid;place-items:center;background:#e0e7ff;border:1px solid var(--border);font-size:30px}
+    .controls{display:flex; gap:8px; flex-wrap:wrap}
+    .btn{border:1px solid var(--border); background:#fff; color:var(--text); padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700}
+    .btn.active{border-color:#94a3b8}
+
+    main{padding:16px 0}
+    .hero{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:16px}
+    .hero h1{margin:0 0 8px 0; font-size:clamp(20px,3vw,30px)}
+    .muted{color:var(--muted)}
+
+    section.beh{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; margin:14px 0}
+    section.beh h2{margin:0 0 10px 0; font-size:22px; display:flex; align-items:center; gap:.5em}
+    .icon{width:22px; height:22px; display:inline-block; vertical-align:middle; color:#0f172a}
+    h3{margin:14px 0 8px 0; font-size:18px}
+    ul{margin:0; padding-inline-start:20px}
+    li{margin:6px 0; line-height:1.7}
+
+    .closing{margin:22px 0 8px; background:#fff; border:1px dashed var(--border); border-radius:14px; padding:14px; text-align:center; font-weight:800; color:#0f172a}
+
+    /* Ensure text stays readable in night mode */
+    body[data-theme="night"] .hero,
+    body[data-theme="night"] section.beh,
+    body[data-theme="night"] footer { color: var(--text); }
+    body[data-theme="night"] .btn { background:#0f2b5f; border-color:#20325c; color: var(--text); }
+    body[data-theme="night"] .logo { background:#163463; }
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .nca{display:flex; align-items:center; gap:10px}
+    .nca img{height: 120px; width: auto}
+    .nca #footnote{font-size:12px; line-height:1.4;}
+
+    /* Night theme (navy) */
+    body[data-theme="night"]{ --bg:#0b1f48; --text:#e7ecf7; --muted:#c3cbe0; --border:#20325c; --card:#0f2b5f; color: var(--text); color-scheme: dark; background:linear-gradient(160deg,#0b1f48,#0f2b5f,#0b1f48) }
+    body[data-theme="night"] .closing{ background:#0b1f48; color:#e7ecf7; border-color:#20325c }
+    body[data-theme="night"] header{ background:#0f255dcc; color: var(--text); }
+    body[data-theme="night"]{ background:linear-gradient(160deg,#0b1f48,#0f2b5f,#0b1f48) }
+
+    /* LTR support */
+    html[dir="ltr"] ul{padding-inline-start:22px}
+    .edit-outline{outline:2px dashed #94a3b8; outline-offset:4px; border-radius:8px;}
+    body[data-edit-mode="on"] .btn#edit-toggle{border-color:#f59e0b}
+
+    /* ✅ Checkbox + final CTA styles */
+    .checkline{
+      margin-top:14px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#f1f5ff;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .checkline input{ transform: scale(1.1); }
+
+    .notice{
+      text-align:center;
+      font-weight:800;
+      margin:18px 0 10px;
+      line-height:1.6;
+    }
+    .notice .important{
+      display:block;
+      margin-top:8px;
+      color:#b45309;
+      font-weight:900;
+    }
+    .nextBox{
+      display:none;
+      text-align:center;
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:22px;
+      margin:16px 0 22px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    .nextBtn{
+      display:inline-block;
+      margin-top:12px;
+      background:#16a34a;
+      color:#fff;
+      padding:14px 28px;
+      border-radius:999px;
+      font-weight:900;
+      text-decoration:none;
+    }
+
+    /* ✅ NEW: step-by-step (only one behaviour visible at a time) */
+    .beh-step { display:none; }
+</style>
+</head>
+<body>
+<header>
+<div class="container row">
+<div class="brand">
+<div class="logo">🛡️</div>
+<div>
+<div class="muted" id="subtitle" style="font-size:12px"></div>
+<div id="title-ar" style="font-weight:800; font-size:18px; display:block;">دليلك لسلوكيات أمن سيبرانية آمنة</div><div id="title-en" style="font-weight:800; font-size:18px; display:none;">Your Guide to Safe Cyber Behaviors</div></div>
+</div>
+<div class="controls">
+<button class="btn" id="btn-ar">عربي</button>
+<button class="btn" id="btn-en">English</button>
+<button class="btn" id="toggle-theme" title="Theme">🌗</button>
+</div>
+</div>
+</header>
+<main class="container">
+<div class="hero" id="hero-ar">
+<h1 id="hero">أمانك يبدأ من عاداتك وممارساتك السليمة!</h1>
+<p class="muted" id="hero-desc">خمس سلوكيات سيبرانية قد تجعلك آمنا في الفضاء السيبراني والبيئات الرقمية!<br/> تعرف على كل سلوك لماذا هو مهم، وماهي النصائح العملية لتطبيقه، وما الأخطاء الشائعة لتجنّبها.</p>
+</div><div class="hero" id="hero-en" style="display:none;"><h1>Your cybersecurity starts from your safe practices and habits!</h1><p class="muted">Five cyber practices that help keep you safe across online services and digital environments.<br/>Learn why each practice matters, what are practical advice to apply it, and common mistakes to avoid.</p></div>
+
+<!-- Arabic Content -->
+<div id="content-ar">
+
+<section class="beh beh-step beh-step-ar" data-step="1">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm3 8H9V6a3 3 0 116 0v3z"></path></svg>
+</span>
+           استخدام كلمات مرور قوية
+        </h2>
+<h3>لماذا هي مهمة؟</h3>
+<ul>
+<li> كلمات المرور تمنع الغرباء من الوصول إلى حساباتك عبر الإنترنت.</li>
+<li>كلمات المرور القوية تحمي حساباتك.</li>
+</ul>
+<h3>نصائح عملية</h3>
+<ul>
+<li> استخدم كلمة مرور طويلة – على الأقل 10 حروف.</li>
+<li>تتكون كلمة المرور القوية من ثلاث كلمات عشوائية، على سبيل المثال، Cup Fish Biro.</li>
+<li>.إذا كانت الكلمات الثلاث العشوائية لا تلبي متطلبات وشروط موقع الويب، فيمكنك بدء الكلمات بحرف كبير ثم إلحاق رقمك المفضل وعلامة؟</li>
+<li>استخدم كلمات مرور سهلة التذكر لك وصعبة التخمين للآخرين.</li>
+<li>استخدم كلمات مرور مختلفة من حساب لآخر.</li>
+<li>لا تشارك كلمات مرورك مع الآخرين.</li>
+</ul>
+<h3>أخطاء شائعة</h3>
+<ul>
+<li>استخدم كلمات مرور يمكن تخمينها مثل تاريخ ميلادك ورقم هاتفك واسم حيوانك الأليف ككلمة مرور.</li>
+<li> .استخدام نفس كلمة المرور لحسابات متعددة </li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-ar" id="ar-b1" data-lang="ar" data-step="1">
+  <label for="ar-b1">بعد الانتهاء من قراءة هذا الجزء، يرجى تحديد هذا المربع</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-ar" data-step="2">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M10.59 13.41L9.17 12l4.24-4.24a3 3 0 114.24 4.24l-1.41 1.41-1.41-1.41 1.41-1.41a1 1 0 10-1.41-1.41L8.76 13.05a3 3 0 01-4.24-4.24l1.41-1.41 1.41 1.41-1.41 1.41a1 1 0 101.41 1.41l3.66-3.66 1.41 1.41-3.66 3.66a3 3 0 004.24 4.24l4.24-4.24 1.41 1.41-4.24 4.24a5 5 0 01-7.07-7.07l4.24-4.24 1.41 1.41-4.24 4.24"></path></svg>
+</span>
+          التحقق من الروابط قبل النقر على الرسائل  ( الحماية من التصيّد الاحتيالي)
+        </h2>
+<h3>لماذا مهم؟</h3>
+<ul>
+<li>تحميك من سرقة البيانات، اختراق الأجهزة والاستيلاء على البيانات.</li>
+<li>تحميك من المخاطر السيبرانية والتصيّد الإلكتروني.</li>
+</ul>
+<h3>نصائح عملية</h3>
+<ul>
+<li>تمهل 5 ثوانٍ قبل النقر وابحث عن العلامات التحذيرية (اللغة المتسرعة/المخيفة/المحفزة).</li>
+<li>تحقق من هوية المرسل عند استلام رسالة/رابط مشبوه. (هل تعرفه/ا؟ هل تتوقع او تنتظرههذه الرسالة/الرابط؟ هل يمكنك التواصل مع المرسل للتحقق من خلال قناة أخرى (مثل واتساب، إنستغرام، إلخ)؟ إذا كانت الإجابة لا، فلا تنقر. </li>
+<li>لا تُدخل معلوماتك الشخصية/الحساسة عبر روابط الرسائل (مثل الاسم، تاريخ الميلاد، الهوية، كلمات المرور، رمز التحقق لمرة واحدة، تفاصيل الحساب البنكي، إلخ).</li>
+<li>إذا كانت جهة رسمية، فتأكد من مطابقة العنوان/الرابط المرسل مع المعلومات في الموقع الإلكتروني الرسمي للجهة بنسبة 100%.</li>
+<li>ما زلت غير متأكد؟ استخدم خدمة (تحقيق) المقدمة من الهيئة الوطنية السعودية للأمن السيبراني للتحقق من الروابط المشبوهة عبر واتساب على الرقم: +966118136644 أو تفضل بزيارة الموقع الإلكتروني: https://tahqaq.haseen.gov.sa 
+أو استخدم منصة iBarry الأمنية. 
+للتحقق من روابطك، على الرابط: https://www.ibarry.ch/en/security-checks/ </li>
+<li>إذا تلقيت رسالة/رابطًا مشبوهًا، فأبلغ عنه دائمًا إلى الجهة المعنية / أو مقدم الخدمة المعني (مثل البنك، أو جهة حكومية، إلخ).</li>
+<li>هل نقرت بالفعل على رابط مشبوه؟ أبلغ عنه فوراً إلى مقدم الخدمة أو (خدمة الإبلاغ عن الجرائم الإلكترونية السعودية على https://my.gov.sa/en/services/398352) أو (تطبيق كلنا أمن).</li>
+<li>إذا أبلغت بالفعل عن النقر على رسالة/رابط مشبوه ، اتبع هذه الإجراءات الإضافية للحد من الأضرار المحتملة: راقب حساباتك بحثًا عن أي نشاط مشبوه او غير اعتيادي، غيّر كلمات المرور، وافحص جهازك ببرنامج مكافحة الفيروسات.</li>
+</ul>
+
+<h3>أخطاء شائعة</h3>
+<ul>
+<li>التسرّع في الاستجابة للرسائل / الروابط بدافع الاندفاع أو الخوف.</li>
+<li>النقر على روابط من مصادر غير معروفة وكشف معلومات شخصية .</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-ar" id="ar-b2" data-lang="ar" data-step="2">
+  <label for="ar-b2">بعد الانتهاء من قراءة هذا الجزء، يرجى تحديد هذا المربع</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-ar" data-step="3">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 2a10 10 0 00-7.07 17.07l1.41-1.41A8 8 0 1120 12h2A10 10 0 0012 2zm-1 11.59l-2.29-2.3-1.42 1.42L11 16.41l6-6-1.41-1.41L11 13.59z"></path></svg>
+</span>
+          استخدام وتمكين التحقق الثنائي (2FA)
+        </h2>
+<h3>لماذا مهم؟</h3>
+<ul>
+<li>تتطلب المصادقة الثنائية (التحقق الثنائي) منك إدخال كلمة مرورك، ثم القيام بخطوة إضافية: كإدخال رمز أمان من هاتفك الذكي، أو استخدام بيانات بيومترية كبصمة وجهك أو إصبعك.</li>
+<li>توفر لك حماية إضافية في حال تم تخمين كلمة مرورك أو تسريبها.</li>
+</ul>
+<h3>نصائح عملية</h3>
+<ul>
+<li>استخدم المصادقة الثنائية للحسابات المهمة والحساسة وذات القيمة العالية (مثل البريد الإلكتروني والحسابات المصرفية، الحكومية…)..</li>
+<li>يقدم معظم مزودي الخدمات تعليمات مفصلة خطوة بخطوة لإضافة المصادقة الثنائية إلى حساباتك ، اطلع عليها وطبقها.</li>
+<li>قد يُطلب منك تثبيت واستخدام تطبيقات مصادقة مثل Google Authenticator أو Microsoft Authenticator، لإنشاء رمز لمرة واحدة عند تسجيل الدخول.</li>
+</ul>
+<h3>أخطاء شائعة</h3>
+<ul>
+<li>إعطاء رمز التحقق الثنائي الخاص بك لمخترق.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-ar" id="ar-b3" data-lang="ar" data-step="3">
+  <label for="ar-b3">بعد الانتهاء من قراءة هذا الجزء، يرجى تحديد هذا المربع</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-ar" data-step="4">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M6 3h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm0 10h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4a2 2 0 012-2zm6-9a3 3 0 100 6 3 3 0 000-6z"></path></svg>
+</span>
+          النسخ الاحتياطي للبيانات
+        </h2>
+<h3>لماذا مهم؟</h3>
+<ul>
+<li>النسخة الاحتياطية هي نسخة من بياناتك المهمة مخزنة في مكان مختلف عن الملف الأصلي.</li>
+<li>تضمن لك النسخ الاحتياطية الحماية من فقدان الملفات القيّمة والمهمة، حيث يمكنك استعادة بياناتك في حال فقدان الملف الأصلي.</li>
+</ul>
+<h3>نصائح عملية</h3>
+<ul>
+<li>احفظ نسخًا احتياطية من بياناتك وملفاتك المهمة بانتظام باستخدام التخزين السحابي، أو وسائط التخزين الخارجية (القرص الصلب الخارجي)، أو كليهما.</li>
+<li>عند اختيارك نسخ بياناتك احتياطيًا باستخدام التخزين السحابي (مثل Apple iCloud أو Google Drive أو Microsoft OneDrive) أو وسائط التخزين الخارجية، اطّلع على التعليمات ذات الصلة على الموقع الإلكتروني الرسمي لمزود الخدمة.</li>
+<li>اختبر نسخك الاحتياطية بانتظام.</li>
+</ul>
+<h3>أخطاء شائعة</h3>
+<ul>
+<li>عدم إجراء نسخ احتياطية بانتظام.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-ar" id="ar-b4" data-lang="ar" data-step="4">
+  <label for="ar-b4">بعد الانتهاء من قراءة هذا الجزء، يرجى تحديد هذا المربع</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-ar" data-step="5">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 2a10 10 0 1010 10h-2A8 8 0 1120 12h2A10 10 0 0012 2zm1 5h-2v6l5 3 .9-1.8-3.9-2.2V7z"></path></svg>
+</span>
+          تحديث الأنظمة، البرامج والتطبيقات
+        </h2>
+<h3>لماذا مهم؟</h3>
+<ul>
+<li>التحديثات هي إصدارات جديدة من الأنظمة والبرامج والتطبيقات، تتضمن ميزات جديدة لإصلاح الثغرات الأمنية وتحسين الأداء.</li>
+</ul>
+<h3>نصائح عملية</h3>
+<ul>
+<li>فعّل التحديثات التلقائية في إعدادات جهازك. هذا يعني أنك لن تحتاج إلى تذكر تثبيت التحديثات.</li>
+<li>ثبّت التحديثات فور صدورها.</li>
+<li>نزّل التحديثات فقط من مصادر موثوقة ورسمية.</li>
+<li> )تجنّب استخدام الأجهزة التي لم تعد تتلقى تحديثات ( توقّف دعم التحديثات لها.</li>
+</ul>
+<h3>أخطاء شائعة</h3>
+<ul>
+<li>تأجيل أو تجاهل تحديثات النظام/البرامج /التطبيقات.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-ar" id="ar-b5" data-lang="ar" data-step="5">
+  <label for="ar-b5">بعد الانتهاء من قراءة هذا الجزء، يرجى تحديد هذا المربع</label>
+</div>
+</section>
+
+<!-- ✅ END AR: hidden until step 5 is checked -->
+<div id="endAr" style="display:none;">
+  <div class="closing"> ابقى متيقظاً وآمناً ! </div>
+
+  <div class="notice" id="noticeAr">
+  بعد مراجعة محتوى هذه الصفحة، يرجى الضغط على الزر أدناه للانتقال إلى الجزء التالي من التجربة
+  (ولكن يجب أولاً قراءة السلوكيات الخمسة وتحديد المربعات لكل سلوك).
+  <span class="important">مهم: للحصول على الدفع، أكمل الجزء التالي.</span>
+  </div>
+
+  <div class="nextBox" id="nextBoxAr">
+  ✅ شكرًا لك! يمكنك الآن الانتقال للجزء التالي.
+  <br/>
+  <a class="nextBtn" id="nextBtnAr" href="#">الانتقال إلى الجزء التالي من الاستبيان</a>
+  </div>
+</div>
+
+</div>
+
+<!-- English Content -->
+<div dir="ltr" id="content-en" lang="en" style="display:none">
+
+<section class="beh beh-step beh-step-en" data-step="1">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm3 8H9V6a3 3 0 116 0v3z"></path></svg>
+</span>
+          Use Strong Passwords
+        </h2>
+<h3>Why it matters</h3>
+<ul>
+<li>Passwords prevent outsiders from accessing your online accounts.</li>
+<li>Strong passwords protect your accounts.</li>
+</ul>
+<h3>Practical advice</h3>
+<ul>
+<li>Use a long password – at least 10 characters.</li>
+<li>A strong password is made up of three random words e.g., Cup Fish Biro.</li>
+<li>If the three random words doesn’t meet website requirements, you can start the words with an upper case letter and then append your favourite number and ?. </li>
+<li>Choose passwords that are easy for you to remember and hard for others to guess.</li>
+<li>Use different passwords for different accounts.</li>
+<li>Do not share your passwords with others.</li>
+</ul>
+<h3>Common mistakes</h3>
+<ul>
+<li>Guessable passwords like your birthdate, phone Number, pet name as a password.</li>
+<li>Using the same password for multiple accounts.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-en" id="en-b1" data-lang="en" data-step="1">
+  <label for="en-b1">After finishing reading this section, please tick this box</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-en" data-step="2">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M10.59 13.41L9.17 12l4.24-4.24a3 3 0 114.24 4.24l-1.41 1.41-1.41-1.41 1.41-1.41a1 1 0 10-1.41-1.41L8.76 13.05a3 3 0 01-4.24-4.24l1.41-1.41 1.41 1.41-1.41 1.41a1 1 0 101.41 1.41l3.66-3.66 1.41 1.41-3.66 3.66a3 3 0 004.24 4.24l4.24-4.24 1.41 1.41-4.24 4.24a5 5 0 01-7.07-7.07l4.24-4.24 1.41 1.41-4.24 4.24"></path></svg>
+</span>
+          Checking Links Before Clicking In Messages (Anti-Phishing)
+        </h2>
+<h3>Why it matters</h3>
+<ul>
+<li> It protects you from data theft, device compromise, and data takeover.</li>
+<li> It protects you from cyber risks and phishing.</li>
+</ul>
+<h3>Practical advice</h3>
+<ul>
+<li>Slow down 5 seconds before clicking and look for red flags (rushing/scaring/ rewarding language). </li>
+<li>Verify the sender’s identity when you receive a suspicious message/link .( Do you know him/her?, Do you expect this message/link?, Can you contact the sender to check by other channel (e.g.,WhatsApp, Instagram ..etc ) if no, DO NOT click.</li>
+<li>Do not enter your personal/sensetive information via message links (e.g.,name, birthdate, ID, passwords, OTP, bank details …etc).</li>
+<li>If it is an official entity, match the sender address/ link with the entity’s official website 100%.</li>
+<li>Still not sure?,  use the (Tahqaq) service provided by Saudi (NCA) to check suspicious links via whatsapp on:  +966118136644 or visit the website: https://tahqaq.haseen.gov.sa or use iBarry security platform: https://www.ibarry.ch/en/security-checks/  to verify your links.</li>
+<li>If you receive a suspicious message/link always report that to the relevant entity/ service provider (e.g., bank, government…etc).</li>
+<li>Already clicked on a suspicious link?, report that to the service provider or (Saudi Cyber Crime report service on https://my.gov.sa/en/services/398352) or (Kollona Amn application).</li>
+<li>Already reported clicking on a suspicious link?, follow these additional actions to reduce potential harms: watch your accounts for suspicious activity, change passwords, and scan your device with an antivirus software.</li>
+</ul>
+<h3>Common mistakes</h3>
+<ul>
+<li>Rushing to act on messages/links due to urgency or fear.</li>
+<li> Clicking on links from unknown sources and disclosing personal information.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-en" id="en-b2" data-lang="en" data-step="2">
+  <label for="en-b2">After finishing reading this section, please tick this box</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-en" data-step="3">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 2a10 10 0 00-7.07 17.07l1.41-1.41A8 8 0 1120 12h2A10 10 0 0012 2zm-1 11.59l-2.29-2.3-1.42 1.42L11 16.41l6-6-1.41-1.41L11 13.59z"></path></svg>
+</span>
+          Use Two-Factor Authentication (2FA)
+        </h2>
+<h3>Why it matters</h3>
+<ul>
+<li>2FA would require you to provide your password and then engage in an extra step: perhaps providing a security code that is provided by your smartphone, or a biometric like your face or fingerprint.</li>
+<li>It gives you extra protection in case your password is guessed or leaked.</li>
+</ul>
+<h3>Practical advice</h3>
+<ul>
+<li>Use 2FA for high-value, sensitive, and important accounts (e.g., email, banking).</li>
+<li>Most service providers will provide step-by-step instructions to add 2FA to your accounts, review and follow them.</li>
+<li>You might be asked to install and use authenticator apps (like Google Authenticator or Microsoft Authenticator), to generate a one-time code when signing in. </li>
+</ul>
+<h3>Common mistakes</h3>
+<ul>
+<li>Giving your 2FA code to a hacker.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-en" id="en-b3" data-lang="en" data-step="3">
+  <label for="en-b3">After finishing reading this section, please tick this box</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-en" data-step="4">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M6 3h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2zm0 10h12a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4a2 2 0 012-2zm6-9a3 3 0 100 6 3 3 0 000-6z"></path></svg>
+</span>
+Data Backup
+        </h2>
+<h3>Why it matters</h3>
+<ul>
+<li>A backup is a copy of your important data that's stored in a different place from the original file.</li>
+<li>Backups insure you against loss of valuable files because you can recover your data if the original file is lost.</li>
+</ul>
+<h3>Practical advice</h3>
+<ul>
+<li>Back up your important data and files regularly using Cloud storage, or removable media (external hard drive), or both.</li>
+<li>When you choose to back up your data using Cloud storage (e.g., Apple iCloud, Google Drive, or Microsoft OneDrive) or removable media, find the relevant instructions on the provider’s official website. </li>
+<li> Test your backups regularly.</li>
+</ul>
+<h3>Common mistakes</h3>
+<ul>
+<li>Not making backups regularly.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-en" id="en-b4" data-lang="en" data-step="4">
+  <label for="en-b4">After finishing reading this section, please tick this box</label>
+</div>
+</section>
+
+<section class="beh beh-step beh-step-en" data-step="5">
+<h2>
+<span aria-hidden="true" class="icon">
+<svg fill="currentColor" height="22" viewbox="0 0 24 24" width="22"><path d="M12 2a10 10 0 1010 10h-2A8 8 0 1120 12h2A10 10 0 0012 2zm1 5h-2v6l5 3 .9-1.8-3.9-2.2V7z"></path></svg>
+</span>
+          Update System, Software &Apps 
+        </h2>
+<h3>Why it matters</h3>
+<ul>
+<li>Updates are new versions of systems, software and apps that contain new features to fix security vulnerabilities and enhance performance.</li>
+</ul>
+<h3>Practical advice</h3>
+<ul>
+<li>Turn on 'automatic updates' in your device's settings. This will mean you do not have to remember to apply updates.</li>
+<li>Install updates as soon as they are released.</li>
+<li>Only download updates from trusted and official sources.</li>
+<li>Avoid using devices that no longer receive updates (Update support for them has been discontinued).</li>
+</ul>
+<h3>Common mistakes</h3>
+<ul>
+<li>Delaying or ignoring system/ software/ apps updates.</li>
+</ul>
+
+<div class="checkline">
+  <input type="checkbox" class="beh-check beh-check-en" id="en-b5" data-lang="en" data-step="5">
+  <label for="en-b5">After finishing reading this section, please tick this box</label>
+</div>
+</section>
+
+<!-- ✅ END EN: hidden until step 5 is checked -->
+<div id="endEn" style="display:none;">
+  <div class="closing">Stay mindful and safe! </div>
+
+  <div class="notice" id="noticeEn">
+  After reviewing the content of this page, please click the button below to proceed to the next part of the experiment
+  (but first you need to read and then check the boxes for each of the five behaviours).
+  <span class="important">Important: To receive payment, please complete the next part.</span>
+  </div>
+
+  <div class="nextBox" id="nextBoxEn">
+  ✅ Thank you! You can now proceed to the next part.
+  <br/>
+  <a class="nextBtn" id="nextBtnEn" href="#">Go to the next part of the survey</a>
+  </div>
+</div>
+
+</div>
+</main>
+
+<footer>
+<div class="container foot">
+<small class="muted">© 2025</small>
+<div class="nca">
+<small class="muted" id="footnote-ar" style="display:inline;"> هذه الإرشادات مستندة إلى مواد الهيئة الوطنية للأمن السيبراني (المملكة العربية السعودية) و المركز الوطني للأمن السيبراني في المملكة المتحدة.</small><small class="muted" id="footnote-en" style="display:none;">These guidelines are based on materials from the Saudi National Cybersecurity Authority (NCA) and the UK National Cyber Security Centre (NCSC).</small></div>
+</div>
+</footer>
+
+<script>
+(function(){
+
+/* ===== إعدادات ===== */
+const TOTAL_STEPS = 5;
+const CHECK_DELAY = 60000; // 60 ثانية
+
+/* ===== participant_id ===== */
+const params = new URLSearchParams(window.location.search);
+const participantId = params.get('participant_id') || '';
+const nextSurveyBaseUrl =
+  'https://strath.eu.qualtrics.com/jfe/form/SV_034Ksjs3ZFTR60m';
+
+/* ===== تحويل وقت ===== */
+function msToMMSS(ms){
+  const totalSec = Math.max(0, Math.floor(ms / 1000));
+  const mm = String(Math.floor(totalSec / 60)).padStart(2,'0');
+  const ss = String(totalSec % 60).padStart(2,'0');
+  return `${mm}:${ss}`;
+}
+
+/* ===== العناصر ===== */
+const steps = {
+  ar: [...document.querySelectorAll('.beh-step-ar')],
+  en: [...document.querySelectorAll('.beh-step-en')]
+};
+
+const endAr = document.getElementById('endAr');
+const endEn = document.getElementById('endEn');
+const nextBoxAr = document.getElementById('nextBoxAr');
+const nextBoxEn = document.getElementById('nextBoxEn');
+const nextBtnAr = document.getElementById('nextBtnAr');
+const nextBtnEn = document.getElementById('nextBtnEn');
+
+/* ===== الحالة ===== */
+let currentLang = document.documentElement.lang || 'ar';
+let currentStep = 1;
+
+const stepStart = {};
+const stepTimes = {};
+let checkboxTimer = null;
+
+/* ===== إخفاء الكل ===== */
+function hideAll(){
+  ['ar','en'].forEach(l =>
+    steps[l].forEach(s => s.style.display = 'none')
+  );
+  endAr.style.display = 'none';
+  endEn.style.display = 'none';
+  nextBoxAr.style.display = 'none';
+  nextBoxEn.style.display = 'none';
+}
+
+/* ===== عرض السلوك ===== */
+function showStep(){
+  hideAll();
+
+  if(currentStep > TOTAL_STEPS){
+    const totalTime =
+      Object.values(stepTimes).reduce((a,b)=>a+b,0);
+
+    const q = new URLSearchParams();
+    if(participantId) q.set('participant_id', participantId);
+
+    /* Embedded Data (الوقت فقط) */
+    q.set('total_time', msToMMSS(totalTime));
+    q.set('t_b1', msToMMSS(stepTimes[1]||0));
+    q.set('t_b2', msToMMSS(stepTimes[2]||0));
+    q.set('t_b3', msToMMSS(stepTimes[3]||0));
+    q.set('t_b4', msToMMSS(stepTimes[4]||0));
+    q.set('t_b5', msToMMSS(stepTimes[5]||0));
+
+    const url = nextSurveyBaseUrl + '?' + q.toString();
+    nextBtnAr.href = url;
+    nextBtnEn.href = url;
+
+    if(currentLang === 'ar'){
+      endAr.style.display = 'block';
+      nextBoxAr.style.display = 'block';
+    } else {
+      endEn.style.display = 'block';
+      nextBoxEn.style.display = 'block';
+    }
+    return;
+  }
+
+  const section = steps[currentLang][currentStep-1];
+  section.style.display = 'block';
+
+  if(!stepStart[currentStep]){
+    stepStart[currentStep] = Date.now();
+  }
+
+  const checkline = section.querySelector('.checkline');
+  const checkbox = section.querySelector('.beh-check');
+
+  checkline.style.display = 'none';
+  checkbox.disabled = true;
+  checkbox.checked = false;
+
+  clearTimeout(checkboxTimer);
+  checkboxTimer = setTimeout(()=>{
+    checkline.style.display = 'flex';
+    checkbox.disabled = false;
+  }, CHECK_DELAY);
+}
+
+/* ===== checkbox ===== */
+document.querySelectorAll('.beh-check').forEach(cb=>{
+  cb.addEventListener('change', ()=>{
+    if(cb.disabled) return;
+
+    const step = Number(cb.dataset.step);
+    if(step !== currentStep) return;
+
+    stepTimes[step] = Date.now() - stepStart[step];
+    cb.disabled = true;
+
+    currentStep++;
+    showStep();
+  });
+});
+
+/* ===== اللغة ===== */
+function setLang(lang){
+  currentLang = (lang === 'en') ? 'en' : 'ar';
+
+  const contentAr = document.getElementById('content-ar');
+  const contentEn = document.getElementById('content-en');
+  const titleAr = document.getElementById('title-ar');
+  const titleEn = document.getElementById('title-en');
+  const heroAr  = document.getElementById('hero-ar');
+  const heroEn  = document.getElementById('hero-en');
+  const footAr  = document.getElementById('footnote-ar');
+  const footEn  = document.getElementById('footnote-en');
+
+  if(currentLang === 'ar'){
+    document.documentElement.lang = 'ar';
+    document.documentElement.dir  = 'rtl';
+    if (contentAr) contentAr.style.display = '';
+    if (contentEn) contentEn.style.display = 'none';
+    if (titleAr) titleAr.style.display = 'block';
+    if (titleEn) titleEn.style.display = 'none';
+    if (heroAr)  heroAr.style.display  = '';
+    if (heroEn)  heroEn.style.display  = 'none';
+    if (footAr)  footAr.style.display  = 'inline';
+    if (footEn)  footEn.style.display  = 'none';
+  } else {
+    document.documentElement.lang = 'en';
+    document.documentElement.dir  = 'ltr';
+    if (contentAr) contentAr.style.display = 'none';
+    if (contentEn) contentEn.style.display = '';
+    if (titleAr) titleAr.style.display = 'none';
+    if (titleEn) titleEn.style.display = 'block';
+    if (heroAr)  heroAr.style.display  = 'none';
+    if (heroEn)  heroEn.style.display  = '';
+    if (footAr)  footAr.style.display  = 'none';
+    if (footEn)  footEn.style.display  = 'inline';
+  }
+
+  showStep();
+}
+
+document.getElementById('btn-ar').onclick = ()=>setLang('ar');
+document.getElementById('btn-en').onclick = ()=>setLang('en');
+
+/* ===== تشغيل ===== */
+setLang(currentLang);
+
+})();
+</script>
+
+</body>
+</html>
